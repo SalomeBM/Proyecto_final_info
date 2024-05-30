@@ -9,7 +9,6 @@ public:
     Objeto(int x, int y);
     bool esColision(Jugador* jugador) const;
     void destruir();
-private:
     int posX, posY;
     bool destruido;
 };

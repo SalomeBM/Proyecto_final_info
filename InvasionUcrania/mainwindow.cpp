@@ -6,7 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //ui->label->setText("Invasion Ucrania");
+    ui->label->setText("Invasion Ucrania");
+
 }
 
 MainWindow::~MainWindow()

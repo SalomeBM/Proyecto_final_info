@@ -1,3 +1,4 @@
+//EscenaDestruccionMasiva.h
 #ifndef ESCENADESTRUCCIONMASIVA_H
 #define ESCENADESTRUCCIONMASIVA_H
 

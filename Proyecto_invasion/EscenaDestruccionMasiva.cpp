@@ -1,3 +1,4 @@
+//EscenaDestruccionMasiva.cpp
 #include "EscenaDestruccionMasiva.h"
 
 void EscenaDestruccionMasiva::inicializar() {

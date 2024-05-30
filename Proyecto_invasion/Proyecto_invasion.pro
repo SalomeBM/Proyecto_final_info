@@ -9,6 +9,7 @@ SOURCES += \
         EscenaDestruccionMasiva.cpp \
         EscenaEsquivarYLlegar.cpp \
         Juego.cpp \
+        Jugador.cpp \
         Objeto.cpp \
         main.cpp
 

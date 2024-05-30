@@ -1,3 +1,4 @@
+//Escena.h
 #ifndef ESCENA_H
 #define ESCENA_H
 

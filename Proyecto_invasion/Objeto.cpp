@@ -1,3 +1,4 @@
+//Objeto.cpp
 #include "Objeto.h"
 
 Objeto::Objeto(int x, int y) : posX(x), posY(y), destruido(false) {}

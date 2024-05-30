@@ -1,3 +1,4 @@
+//EscenaCubrirseYRefugiarse.cpp
 #include "EscenaCubrirseYRefugiarse.h"
 
 void EscenaCubrirseYRefugiarse::inicializar() {

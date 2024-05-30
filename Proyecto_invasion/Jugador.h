@@ -1,3 +1,4 @@
+//Jugador.h
 #ifndef JUGADOR_H
 #define JUGADOR_H
 
@@ -11,10 +12,11 @@ public:
     void agacharse();
     void recibirDano();
     bool estaVivo() const;
+    int posX, posY; // Posiciones públicas para simplificar la renderización
 private:
-    int posX, posY;
     int vidas;
     int puntuacion;
 };
 
 #endif // JUGADOR_H
+

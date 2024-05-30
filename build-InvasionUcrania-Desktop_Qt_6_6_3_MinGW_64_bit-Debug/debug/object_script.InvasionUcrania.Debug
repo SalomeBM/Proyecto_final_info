@@ -1,0 +1,10 @@
+debug/Enemigo.o
+debug/EscenaCubrirseYRefugiarse.o
+debug/EscenaDestruccionMasiva.o
+debug/EscenaEsquivarYLlegar.o
+debug/Juego.o
+debug/Jugador.o
+debug/Objeto.o
+debug/main.o
+debug/mainwindow.o
+debug/moc_mainwindow.o

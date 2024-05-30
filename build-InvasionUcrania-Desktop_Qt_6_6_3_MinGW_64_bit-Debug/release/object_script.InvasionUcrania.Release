@@ -1,0 +1,10 @@
+release/Enemigo.o
+release/EscenaCubrirseYRefugiarse.o
+release/EscenaDestruccionMasiva.o
+release/EscenaEsquivarYLlegar.o
+release/Juego.o
+release/Jugador.o
+release/Objeto.o
+release/main.o
+release/mainwindow.o
+release/moc_mainwindow.o

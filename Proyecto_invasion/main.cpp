@@ -1,10 +1,11 @@
-//main.cpp
-#include <iostream>
+#include "mainwindow.h"
 
-using namespace std;
+#include <QApplication>
 
-int main()
+int main(int argc, char *argv[])
 {
-    cout << "Hello World!" << endl;
-    return 0;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 }

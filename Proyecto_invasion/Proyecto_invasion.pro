@@ -1,24 +1,13 @@
-TEMPLATE = app
-CONFIG += console c++17
-CONFIG -= app_bundle
-CONFIG -= qt
+QT += core gui widgets
+
+CONFIG += c++11
 
 SOURCES += \
-        Enemigo.cpp \
-        EscenaCubrirseYRefugiarse.cpp \
-        EscenaDestruccionMasiva.cpp \
-        EscenaEsquivarYLlegar.cpp \
-        Juego.cpp \
-        Jugador.cpp \
-        Objeto.cpp \
-        main.cpp
+        main.cpp \
+        mainwindow.cpp
 
 HEADERS += \
-    Enemigo.h \
-    Escena.h \
-    EscenaCubrirseYRefugiarse.h \
-    EscenaDestruccionMasiva.h \
-    EscenaEsquivarYLlegar.h \
-    Juego.h \
-    Jugador.h \
-    Objeto.h
+        mainwindow.h
+
+FORMS += \
+        mainwindow.ui

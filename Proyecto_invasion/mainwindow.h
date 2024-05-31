@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QKeyEvent>
 #include <QTimer>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +26,8 @@ protected:
 private slots:
     void movePlayer();
     void checkCollisions();
+    void onJumpButtonPressed();
+    void onJumpButtonReleased();
 
 private:
     Ui::MainWindow *ui;
@@ -36,6 +39,8 @@ private:
     bool isJumping;
     qreal jumpHeight;
     qreal jumpSpeed;
+    qreal jumpMaxHeight; // Altura máxima del salto
+    qreal originalPlayerY; // Posición original en Y del jugador
 };
 
 #endif // MAINWINDOW_H

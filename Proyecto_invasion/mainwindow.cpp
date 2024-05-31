@@ -10,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , playerLives(3)
     , isJumping(false)
-    , jumpHeight(50) // Altura del salto
-    , jumpSpeed(5)   // Velocidad del salto
+    , jumpHeight(0)
+    , jumpSpeed(10)
+    , jumpMaxHeight(100) // Altura máxima del salto
 {
     ui->setupUi(this);
 
@@ -20,15 +21,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     player = new QGraphicsRectItem(0, 0, 50, 50);
     player->setBrush(Qt::blue);
-    player->setPos(100, 500); // Posición inicial en el borde inferior
+    originalPlayerY = 400; // Posición inicial en el borde inferior
+    player->setPos(100, originalPlayerY);
     scene->addItem(player);
 
-    // Create obstacles
+    // Crear obstáculos
     for (int i = 0; i < 5; ++i) {
         QGraphicsRectItem *obstacle = new QGraphicsRectItem(0, 0, 50, 50);
         obstacle->setBrush(Qt::red);
         int x = QRandomGenerator::global()->bounded(200, 700);
-        int y = 500; // Obstáculos en el borde inferior
+        int y = originalPlayerY; // Obstáculos en el borde inferior
         obstacle->setPos(x, y);
         scene->addItem(obstacle);
         obstacles.append(obstacle);
@@ -38,6 +40,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, &QTimer::timeout, this, &MainWindow::movePlayer);
     connect(timer, &QTimer::timeout, this, &MainWindow::checkCollisions);
     timer->start(100);
+
+    // Conectar señales del botón de salto
+    connect(ui->jumpButton, &QPushButton::pressed, this, &MainWindow::onJumpButtonPressed);
+    connect(ui->jumpButton, &QPushButton::released, this, &MainWindow::onJumpButtonReleased);
 }
 
 MainWindow::~MainWindow() {
@@ -49,6 +55,7 @@ MainWindow::~MainWindow() {
 void MainWindow::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Up && !isJumping) {
         isJumping = true;
+        jumpHeight = 0;
     }
 }
 
@@ -59,21 +66,23 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event) {
 }
 
 void MainWindow::movePlayer() {
-    player->moveBy(5, 0);  // Move player to the right
+    player->moveBy(5, 0);  // Mover el jugador hacia la derecha
 
     if (isJumping) {
-        player->moveBy(0, -jumpSpeed);
-        if (player->y() <= 500 - jumpHeight) {
+        if (jumpHeight < jumpMaxHeight) {
+            player->moveBy(0, -jumpSpeed);
+            jumpHeight += jumpSpeed;
+        } else {
             isJumping = false;
         }
-    } else if (player->y() < 500) {
+    } else if (player->y() < originalPlayerY) {
         player->moveBy(0, jumpSpeed);
     }
 
-    // Check if player reached the end
+    // Comprobar si el jugador llegó al final
     if (player->x() > 750) {
         timer->stop();
-        // Show message or take any other action
+        // Mostrar mensaje o realizar cualquier otra acción
     }
 }
 
@@ -81,13 +90,22 @@ void MainWindow::checkCollisions() {
     for (QGraphicsRectItem *obstacle : obstacles) {
         if (player->collidesWithItem(obstacle)) {
             playerLives--;
-            // Reset player position
-            player->setPos(100, 500);
+            // Restablecer la posición del jugador
+            player->setPos(100, originalPlayerY);
             if (playerLives <= 0) {
                 timer->stop();
-                // Show message or take any other action
+                // Mostrar mensaje o realizar cualquier otra acción
             }
             break;
         }
     }
+}
+
+void MainWindow::onJumpButtonPressed() {
+    isJumping = true;
+    jumpHeight = 0;
+}
+
+void MainWindow::onJumpButtonReleased() {
+    isJumping = false;
 }

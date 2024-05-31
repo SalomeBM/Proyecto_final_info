@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include <QKeyEvent>
+#include <QGraphicsRectItem>
 #include <QTimer>
 #include <QPushButton>
 
@@ -12,7 +12,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow {
+class MainWindow : public QMainWindow
+{
     Q_OBJECT
 
 public:
@@ -28,19 +29,21 @@ private slots:
     void checkCollisions();
     void onJumpButtonPressed();
     void onJumpButtonReleased();
+    void centerOnPlayer();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QGraphicsRectItem *player;
+    QList<QGraphicsRectItem*> obstacles;
     QTimer *timer;
-    QList<QGraphicsRectItem *> obstacles;
     int playerLives;
     bool isJumping;
-    qreal jumpHeight;
-    qreal jumpSpeed;
-    qreal jumpMaxHeight; // Altura máxima del salto
-    qreal originalPlayerY; // Posición original en Y del jugador
+    int jumpHeight;
+    int jumpSpeed;
+    int jumpMaxHeight;
+    int playerSpeed = 5;
+    int originalPlayerY;
 };
 
 #endif // MAINWINDOW_H

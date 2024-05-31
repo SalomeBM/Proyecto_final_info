@@ -11,8 +11,9 @@ MainWindow::MainWindow(QWidget *parent)
     , playerLives(3)
     , isJumping(false)
     , jumpHeight(0)
-    , jumpSpeed(10)
-    , jumpMaxHeight(100) // Altura máxima del salto
+    , jumpSpeed(20) // Aumentar la velocidad del salto
+    , jumpMaxHeight(200) // Aumentar la altura máxima del salto
+    , playerSpeed(5)
 {
     ui->setupUi(this);
 
@@ -66,24 +67,29 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event) {
 }
 
 void MainWindow::movePlayer() {
-    player->moveBy(5, 0);  // Mover el jugador hacia la derecha
+    // Actualiza la posición del jugador
+    player->setPos(player->x() + playerSpeed, player->y());
 
-    if (isJumping) {
-        if (jumpHeight < jumpMaxHeight) {
-            player->moveBy(0, -jumpSpeed);
-            jumpHeight += jumpSpeed;
-        } else {
-            isJumping = false;
-        }
-    } else if (player->y() < originalPlayerY) {
+    // Mover jugador hacia arriba si está saltando
+    if (isJumping && jumpHeight < jumpMaxHeight) {
+        player->moveBy(0, -jumpSpeed);
+        jumpHeight += jumpSpeed;
+    } else if (!isJumping && player->y() < originalPlayerY) {
+        // Caída del jugador
         player->moveBy(0, jumpSpeed);
     }
 
-    // Comprobar si el jugador llegó al final
-    if (player->x() > 750) {
-        timer->stop();
-        // Mostrar mensaje o realizar cualquier otra acción
-    }
+    // Ajusta la vista para seguir al jugador
+    centerOnPlayer();
+
+    // Chequear colisiones
+    checkCollisions();
+}
+
+void MainWindow::centerOnPlayer() {
+    // Centrar la vista en la posición actual del jugador
+    QPointF centerPoint = player->pos();
+    ui->graphicsView->centerOn(centerPoint);
 }
 
 void MainWindow::checkCollisions() {
@@ -98,6 +104,11 @@ void MainWindow::checkCollisions() {
             }
             break;
         }
+    }
+
+    // Asegurarse de que el temporizador esté activo para continuar el movimiento
+    if (!timer->isActive()) {
+        timer->start(100);
     }
 }
 

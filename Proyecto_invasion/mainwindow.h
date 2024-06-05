@@ -7,6 +7,7 @@
 #include <QGraphicsRectItem>
 #include <QTimer>
 #include <QPushButton>
+#include <QList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,6 +31,7 @@ private slots:
     void onJumpButtonPressed();
     void onJumpButtonReleased();
     void centerOnPlayer();
+    void initGame();
 
 private:
     Ui::MainWindow *ui;

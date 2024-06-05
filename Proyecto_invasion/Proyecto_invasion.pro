@@ -11,3 +11,6 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui
+
+RESOURCES += \
+    ImagenesNivel1.qrc

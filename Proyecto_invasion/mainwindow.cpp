@@ -4,6 +4,8 @@
 #include <QKeyEvent>
 #include <QTimer>
 #include <QRandomGenerator>
+#include <QInputDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,6 +19,33 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // Mostrar diálogo de selección de nivel
+    bool ok;
+    QStringList levels;
+    levels << "Nivel 1";
+
+    QString level = QInputDialog::getItem(this, tr("Seleccionar Nivel"),
+                                          tr("Niveles:"), levels, 0, false, &ok);
+
+    if (ok && !level.isEmpty()) {
+        if (level == "Nivel 1") {
+            // Inicializar la escena y el juego
+            initGame();
+        }
+    } else {
+        // Si no se selecciona ningún nivel, cerrar la aplicación
+        QMessageBox::information(this, tr("Información"), tr("No se seleccionó ningún nivel. Cerrando aplicación."));
+        QTimer::singleShot(0, this, SLOT(close()));
+    }
+}
+
+MainWindow::~MainWindow() {
+    delete ui;
+    delete timer;
+    delete scene;
+}
+
+void MainWindow::initGame() {
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
@@ -45,12 +74,6 @@ MainWindow::MainWindow(QWidget *parent)
     // Conectar señales del botón de salto
     connect(ui->jumpButton, &QPushButton::pressed, this, &MainWindow::onJumpButtonPressed);
     connect(ui->jumpButton, &QPushButton::released, this, &MainWindow::onJumpButtonReleased);
-}
-
-MainWindow::~MainWindow() {
-    delete ui;
-    delete timer;
-    delete scene;
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {

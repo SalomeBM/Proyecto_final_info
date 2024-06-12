@@ -3,10 +3,14 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include <QGraphicsView>
 #include <QGraphicsRectItem>
 #include <QTimer>
-#include <QPushButton>
+#include <QInputDialog>
+#include <QRandomGenerator>
+#include <QMessageBox>
+#include <QPainter>
+#include <QKeyEvent>
+#include <QList>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,30 +24,66 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-protected:
-    void keyPressEvent(QKeyEvent *event) override;
-    void keyReleaseEvent(QKeyEvent *event) override;
-
 private slots:
     void movePlayer();
     void checkCollisions();
     void onJumpButtonPressed();
     void onJumpButtonReleased();
-    void centerOnPlayer();
+    void updatePositions();
+    void addBlock();
+    void moveYellowBlocks();
 
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
-    QGraphicsRectItem *player;
+
+    // Nivel 1
+    QGraphicsScene *scene = nullptr;
+    QGraphicsRectItem *player = nullptr;
     QList<QGraphicsRectItem*> obstacles;
-    QTimer *timer;
+    QTimer *timer = nullptr;
     int playerLives;
     bool isJumping;
     int jumpHeight;
-    int jumpSpeed;
-    int jumpMaxHeight;
-    int playerSpeed = 5;
+    const int jumpSpeed;
+    const int jumpMaxHeight;
+    const int playerSpeed;
     int originalPlayerY;
+
+    // Nivel 2
+    struct Block {
+        int x, y, dx, dy;
+        bool isParabolic;
+    };
+    QList<Block> redBlocks;
+    QTimer *updateTimer = nullptr;
+    int x, y;
+    const int blockSize = 50;
+    const int redBlockSize = 50;
+    const int stepSize = 20;
+    int attemptsLeft;
+
+    // Nivel 3
+    QList<QRect> blocks;
+    QList<QRect> yellowBlocks;
+    QTimer *blockTimer = nullptr;
+    QTimer *yellowBlockTimer = nullptr;
+    int totalBlocksGenerated;
+
+    // General
+    int currentLevel;
+
+    void initializeLevel1();
+    void initializeLevel2();
+    void initializeLevel3();
+    void centerOnPlayer();
+    void resetBlueBlock();
+    void endGame();
+    bool checkCollision(const Block &block);
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
+    void paintEvent(QPaintEvent *event) override;
 };
 
 #endif // MAINWINDOW_H

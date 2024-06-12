@@ -285,6 +285,10 @@ debug/moc_mainwindow.cpp: ../Nivel3/mainwindow.h \
 		C:/Qt/6.6.2/mingw_64/include/QtCore/QRandomGenerator \
 		C:/Qt/6.6.2/mingw_64/include/QtCore/qrandom.h \
 		C:/Qt/6.6.2/mingw_64/include/QtGui/QPixmap \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/QMessageBox \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.6.2/mingw_64/bin/moc.exe
 	C:\Qt\6.6.2\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/Paola/OneDrive/Documentos/GitHub/Proyecto_final_info/build-Nivel3-Desktop_Qt_6_6_2_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.6.2/mingw_64/mkspecs/win32-g++ -IC:/Users/Paola/OneDrive/Documentos/GitHub/Proyecto_final_info/Nivel3 -IC:/Qt/6.6.2/mingw_64/include -IC:/Qt/6.6.2/mingw_64/include/QtWidgets -IC:/Qt/6.6.2/mingw_64/include/QtGui -IC:/Qt/6.6.2/mingw_64/include/QtCore -I. -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\Nivel3\mainwindow.h -o debug\moc_mainwindow.cpp
@@ -510,7 +514,11 @@ debug/main.o: ../Nivel3/main.cpp C:/Qt/6.6.2/mingw_64/include/QtWidgets/QApplica
 		C:/Qt/6.6.2/mingw_64/include/QtCore/qbasictimer.h \
 		C:/Qt/6.6.2/mingw_64/include/QtCore/QRandomGenerator \
 		C:/Qt/6.6.2/mingw_64/include/QtCore/qrandom.h \
-		C:/Qt/6.6.2/mingw_64/include/QtGui/QPixmap
+		C:/Qt/6.6.2/mingw_64/include/QtGui/QPixmap \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/QMessageBox \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\Nivel3\main.cpp
 
 debug/mainwindow.o: ../Nivel3/mainwindow.cpp ../Nivel3/mainwindow.h \
@@ -690,6 +698,10 @@ debug/mainwindow.o: ../Nivel3/mainwindow.cpp ../Nivel3/mainwindow.h \
 		C:/Qt/6.6.2/mingw_64/include/QtCore/QRandomGenerator \
 		C:/Qt/6.6.2/mingw_64/include/QtCore/qrandom.h \
 		C:/Qt/6.6.2/mingw_64/include/QtGui/QPixmap \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/QMessageBox \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/qdialog.h \
+		C:/Qt/6.6.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		ui_mainwindow.h \
 		C:/Qt/6.6.2/mingw_64/include/QtCore/QVariant \
 		C:/Qt/6.6.2/mingw_64/include/QtWidgets/QApplication \

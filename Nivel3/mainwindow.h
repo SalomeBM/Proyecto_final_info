@@ -8,6 +8,8 @@
 #include <QTimer>
 #include <QRandomGenerator>
 #include <QPixmap>
+#include <QMessageBox>
+
 
 
 QT_BEGIN_NAMESPACE
@@ -25,6 +27,7 @@ public:
 protected:
     void paintEvent(QPaintEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
+    void showVictoryMessage();
 
 private slots:
     void addBlock();

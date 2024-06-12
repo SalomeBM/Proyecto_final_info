@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -9,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setFixedSize(1000, 600); // Fijamos el tamaño de la ventana
-    background.load("C:/Users/Paola/OneDrive/Documentos/GitHub/Proyecto_final_info/Nivel1/fondo.png");
+    background.load("C:/Users/Paola/OneDrive/Documentos/GitHub/Proyecto_final_info/Nivel3/fondo.png");
 
     // Crear 5 bloques amarillos fijos
     for (int i = 0; i < 5; ++i) {
@@ -40,17 +41,20 @@ void MainWindow::paintEvent(QPaintEvent *event)
     // Dibujar imagen de fondo
     painter.drawPixmap(0, 0, width(), height(), background);
 
-    painter.setBrush(QBrush(Qt::blue));
-    painter.drawRect(x, y, 50, 50); // Dibujamos el bloque azul
-
-    painter.setBrush(QBrush(Qt::red));
-    for (const QRect &block : blocks) {
-        painter.drawRect(block); // Dibujamos los bloques adicionales
-    }
-
+    // Dibujar bloques amarillos
     painter.setBrush(QBrush(Qt::yellow));
     for (const QRect &block : yellowBlocks) {
         painter.drawRect(block); // Dibujamos los bloques amarillos
+    }
+
+    // Dibujar bloque azul
+    painter.setBrush(QBrush(Qt::blue));
+    painter.drawRect(x, y, 50, 50); // Dibujamos el bloque azul
+
+    // Dibujar bloques rojos
+    painter.setBrush(QBrush(Qt::red));
+    for (const QRect &block : blocks) {
+        painter.drawRect(block); // Dibujamos los bloques adicionales
     }
 }
 
@@ -83,11 +87,21 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     for (int i = 0; i < blocks.size(); ++i) {
         if (blueBlock.intersects(blocks[i])) {
             blocks.remove(i);
+            // Verificar si todos los bloques rojos han sido capturados
+            if (blocks.isEmpty()) {
+                // Mostrar mensaje de victoria
+                showVictoryMessage();
+            }
             break;
         }
     }
 
     update(); // Redibujar la ventana
+}
+
+void MainWindow::showVictoryMessage()
+{
+    QMessageBox::information(this, "¡Nivel 3 superado!", "¡Felicidades! Has completado el nivel 3.");
 }
 
 void MainWindow::addBlock()

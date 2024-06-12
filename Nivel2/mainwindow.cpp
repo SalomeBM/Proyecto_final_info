@@ -3,7 +3,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), x(0), attemptsLeft(3)
 {
-    setFixedSize(1380, 860); // Tamaño fijo de la ventana
+    setFixedSize(1000, 600); // Tamaño fijo de la ventana
 
     initializeRedBlocks();
 
@@ -28,12 +28,17 @@ void MainWindow::initializeRedBlocks()
         block.dy = rand() % 10 + 5; // Movimiento vertical constante
         block.isParabolic = rand() % 2 == 0; // Algunos bloques tendrán movimiento parabólico
         redBlocks.append(block);
+        background.load("C:/Users/Paola/OneDrive/Documentos/GitHub/Proyecto_final_info/Nivel1/fondo.png");
+
     }
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
+
+    // Dibujar imagen de fondo
+    painter.drawPixmap(0, 0, width(), height(), background);
 
     // Establecer el color azul
     painter.setBrush(Qt::blue);
@@ -103,6 +108,12 @@ void MainWindow::updatePositions()
         }
     }
     update(); // Redibujar la ventana
+    if (x >= finishLine)
+    {
+        // Mostrar mensaje de victoria
+        QMessageBox::information(this, "¡Felicidades!", "¡Has ganado el nivel 2!");
+        close(); // Cerrar la ventana o realizar cualquier otra acción necesaria
+    }
 }
 
 bool MainWindow::checkCollision(const Block &block)

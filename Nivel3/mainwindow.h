@@ -7,6 +7,8 @@
 #include <QWidget>
 #include <QTimer>
 #include <QRandomGenerator>
+#include <QPixmap>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,6 +32,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QPixmap background;
     int x, y; // Posición del bloque azul
     QVector<QRect> blocks; // Vector de bloques adicionales
     QVector<QRect> yellowBlocks; // Vector de bloques amarillos

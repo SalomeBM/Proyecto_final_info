@@ -7,6 +7,8 @@
 #include <QGraphicsRectItem>
 #include <QTimer>
 #include <QPushButton>
+#include <QGraphicsPixmapItem>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +39,7 @@ private:
     QGraphicsRectItem *player;
     QList<QGraphicsRectItem*> obstacles;
     QTimer *timer;
+    QGraphicsPixmapItem *background;
     int playerLives;
     bool isJumping;
     int jumpHeight;

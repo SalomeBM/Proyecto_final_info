@@ -8,7 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
     , totalBlocksGenerated(0) // Inicializamos el contador de bloques generados
 {
     ui->setupUi(this);
-    setFixedSize(1380, 860); // Fijamos el tamaño de la ventana
+    setFixedSize(1000, 600); // Fijamos el tamaño de la ventana
+    background.load("C:/Users/Paola/OneDrive/Documentos/GitHub/Proyecto_final_info/Nivel1/fondo.png");
 
     // Crear 5 bloques amarillos fijos
     for (int i = 0; i < 5; ++i) {
@@ -35,6 +36,10 @@ void MainWindow::paintEvent(QPaintEvent *event)
     Q_UNUSED(event);
 
     QPainter painter(this);
+
+    // Dibujar imagen de fondo
+    painter.drawPixmap(0, 0, width(), height(), background);
+
     painter.setBrush(QBrush(Qt::blue));
     painter.drawRect(x, y, 50, 50); // Dibujamos el bloque azul
 

@@ -20,6 +20,11 @@ MainWindow::MainWindow(QWidget *parent)
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
 
+    QPixmap backgroundImage("C:/Users/Paola/OneDrive/Documentos/GitHub/Proyecto_final_info/Nivel1/fondo.png");
+    background = new QGraphicsPixmapItem(backgroundImage);
+    scene->addItem(background);
+    background->setPos(0, 0);
+
     player = new QGraphicsRectItem(0, 0, 50, 50);
     player->setBrush(Qt::blue);
     originalPlayerY = 400; // Posición inicial en el borde inferior

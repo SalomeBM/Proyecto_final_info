@@ -7,6 +7,8 @@
 #include <QPainter>
 #include <QTimer>
 #include <QMessageBox>
+#include <QPixmap>
+
 
 class MainWindow : public QMainWindow
 {
@@ -27,6 +29,7 @@ private:
     int x; // Posición x del bloque azul
     const int blockSize = 50; // Tamaño del bloque azul
     const int stepSize = 10; // Tamaño del paso al mover el bloque
+    const int finishLine = 900; // Posición final del nivel
     int attemptsLeft; // Intentos restantes
 
     struct Block {
@@ -36,6 +39,7 @@ private:
     };
 
     QVector<Block> redBlocks; // Bloques rojos
+    QPixmap background;
     const int redBlockSize = 20; // Tamaño de los bloques rojos
     QTimer *timer; // Temporizador para actualizar posiciones
     void initializeRedBlocks(); // Inicializar bloques rojos

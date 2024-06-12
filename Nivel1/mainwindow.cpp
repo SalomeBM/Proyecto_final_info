@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , jumpSpeed(20) // Aumentar la velocidad del salto
     , jumpMaxHeight(200) // Aumentar la altura máxima del salto
     , playerSpeed(5)
+    , level1Completed(false)
 {
     ui->setupUi(this);
 
@@ -21,6 +22,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(scene);
 
     QPixmap backgroundImage("C:/Users/Paola/OneDrive/Documentos/GitHub/Proyecto_final_info/Nivel1/fondo.png");
+
+    scene->setSceneRect(0, 0, backgroundImage.width(), backgroundImage.height());
+    ui->graphicsView->setFixedSize(backgroundImage.width(), backgroundImage.height());
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     background = new QGraphicsPixmapItem(backgroundImage);
     scene->addItem(background);
     background->setPos(0, 0);
@@ -98,6 +105,13 @@ void MainWindow::centerOnPlayer() {
 }
 
 void MainWindow::checkCollisions() {
+    if (player->x() >= scene->width() - player->rect().width() && !level1Completed) {
+        level1Completed = true;
+        timer->stop(); // Detiene el temporizador después de ganar el nivel 1
+        QMessageBox::information(this, "¡Nivel 1 completado!", "¡Felicidades! Has completado el nivel 1.");
+        return;
+    }
+
     for (QGraphicsRectItem *obstacle : obstacles) {
         if (player->collidesWithItem(obstacle)) {
             playerLives--;

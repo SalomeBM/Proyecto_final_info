@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QPushButton>
 #include <QGraphicsPixmapItem>
+#include <QMessageBox>
 
 
 QT_BEGIN_NAMESPACE
@@ -35,6 +36,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    bool level1Completed;
     QGraphicsScene *scene;
     QGraphicsRectItem *player;
     QList<QGraphicsRectItem*> obstacles;
